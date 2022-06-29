@@ -1,5 +1,11 @@
 <script></script>
+
 <template>
-  <h1>Hello from MainComponent</h1>
+  <h1>Hello from Main Component</h1>
 </template>
-<style></style>
+
+<style>
+h1 {
+  color: red;
+}
+</style>

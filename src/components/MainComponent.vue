@@ -21,7 +21,7 @@
       },
     
       watch: {
-        localeInfo(newVal) (
+        localeInfo(newVal) {
           console.log('newData: ',newVal)
         }
       },

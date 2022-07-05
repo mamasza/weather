@@ -12,22 +12,23 @@
 
 </template>
 <script>
-    export default{
+    export default {
       /* domyślne dane - ładowane na początku*/
       data(){
         return{
-          localeInfo: "San Escobar"
+          localeInfo: 'San Escobar',
         };
       },
+      watch: {
+        localeInfo(newVal)(
+          console.log('newData: ',newVal)
+        }
+      },
+      
       mounted(){
-        console.log("hello");
-        console.log(this)
-        this.localeInfo= "hejo";
 
-
-
-      }
-    }
+      },
+     };
 
 </script>
 <style>

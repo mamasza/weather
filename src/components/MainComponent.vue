@@ -1,11 +1,35 @@
 <script></script>
 
 <template>
-  <h1>Hello from Main Component</h1>
-</template>
+  <div>HEJ</div>
+  <h1>Aplikacja pogodowa</h1>
+  <input 
+    type="text" 
+    placeholder="wpisz lokalizację"
+    v-model="localeInfo"
+  >
 
+
+</template>
+<script>
+    export default{
+      data(){
+        return{
+          localeInfo: "San Escobar"
+        };
+      },
+      mounted(){
+        console.log("hello")
+        this.localeInfo="San Escobar"
+
+
+
+      }
+    }
+
+</script>
 <style>
 h1 {
-  color: blue;
+  color: aquamarine;
 }
 </style>

@@ -18,9 +18,10 @@
         return{
           localeInfo: 'San Escobar',
         };
-      },
+      } 
+    },
       watch: {
-        localeInfo(newVal)(
+        localeInfo(newVal) (
           console.log('newData: ',newVal)
         }
       },

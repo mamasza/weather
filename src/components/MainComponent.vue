@@ -13,14 +13,16 @@
 </template>
 <script>
     export default{
+      /* domyślne dane - ładowane na początku*/
       data(){
         return{
           localeInfo: "San Escobar"
         };
       },
       mounted(){
-        console.log("hello")
-        this.localeInfo="San Escobar"
+        console.log("hello");
+        console.log(this)
+        this.localeInfo= "hejo";
 
 
 

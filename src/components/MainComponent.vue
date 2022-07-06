@@ -1,39 +1,75 @@
 <script></script>
 
 <template>
-  <div>HEJ</div>
   <h1>Aplikacja pogodowa</h1>
-  <input 
-    type="text" 
-    placeholder="wpisz lokalizację"
-    v-model="localeInfo"
-  >
+  <input type="text" placeholder="Podaj lokalizację" v-model="localeInfo" />
+  <button @click="getLatLon">wyszukaj</button>
+  <CityDetails :values="cityValues" />
 
-
+  <div class="weatherDays">
+    <SingleWeather v-for="single of weatherList" :values="single" />
+  </div>
 </template>
+
 <script>
-    export default {
-      /* domyślne dane - ładowane na początku*/
-      data(){
-        return{
-          localeInfo: 'San Escobar',
-        };
-      },
-    
-      watch: {
-        localeInfo(newVal) {
-          console.log('newData: ',newVal)
-        }
-      },
-      
-      mounted(){
+import CityDetails from './CityDetails.vue';
+import SingleWeather from './SingleWeather.vue';
+export default {
+  components: {
+    CityDetails,
+    SingleWeather,
+  },
 
-      },
-     };
+  // "domyślne" dane - te ładowane na początku
+  data() {
+    return {
+      localeInfo: 'Katowice', // domyślna lokalizacja
+      cityValues: {},
+      weatherList: [],
+    };
+  },
 
+  // obiekt przetrzymujący wszystkie funkcje dla komponentu
+  methods: {
+    getLatLon() {
+      this.cityValues = {};
+      fetch(
+        'https://api.openweathermap.org/geo/1.0/direct?q=' +
+          this.localeInfo +
+          '&appid=04d03c358e8933ac6823da54c340c97b'
+      )
+        .then((dt) => dt.json())
+        .then((dt) => {
+          this.getWeather(dt[0].lat, dt[0].lon);
+        });
+    },
+    getWeather(lat, lon) {
+      fetch(
+        'https://api.openweathermap.org/data/2.5/forecast?lat=' +
+          lat +
+          '&lon=' +
+          lon +
+          '&appid=04d03c358e8933ac6823da54c340c97b&units=metric'
+      )
+        .then((dt) => dt.json())
+        .then((dt) => {
+          this.cityValues = dt.city;
+          this.weatherList = dt.list;
+          console.log(dt);
+        });
+    },
+  },
+
+  // mouted - funkcja wywołująca się po "zamontowaniu komponentu"
+  mounted() {
+    this.getLatLon();
+  },
+};
 </script>
+
 <style>
 h1 {
-  color: aquamarine;
+  color: red;
+  margin: 0;
 }
 </style>

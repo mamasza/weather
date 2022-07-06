@@ -1,4 +1,4 @@
-<script setup>
+<nscript setup>
 import MainComponent from './components/MainComponent.vue';
 </script>
 
